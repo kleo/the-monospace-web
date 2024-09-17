@@ -1,17 +1,12 @@
-// The Monospace Web 
-// https://github.com/owickstrom/the-monospace-web
-// https://github.com/owickstrom/the-monospace-web/blob/main/index.css
-//
-// Copyright 2024 Oskar Wickström
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+/* https://github.com/owickstrom/the-monospace-web
+   90df20cd
+   License: MIT https://raw.githubusercontent.com/owickstrom/the-monospace-web/main/LICENSE.md
+*/
+
+@import url('https://fonts.cdnfonts.com/css/jetbrains-mono-2');
 
 :root {
-  --font-family: monospace;
+  --font-family: "JetBrains Mono", monospace;
   --line-height: 1.20rem;
   --border-thickness: 2px;
   --text-color: #000;
@@ -65,7 +60,7 @@ body {
   width: 100%;
   margin: 0;
   padding: var(--line-height) 2ch;
-  max-width: calc(min(80ch, 100%));
+  max-width: calc(min(80ch, round(down, 100%, 1ch)));
   line-height: var(--line-height);
   overflow-x: hidden;
 }
@@ -147,7 +142,7 @@ sub {
 table {
   position: relative;
   top: calc(var(--line-height) / 2);
-  width: calc(100% - 1ch);
+  width: calc(round(down, 100%, 1ch));
   border-collapse: collapse;
   margin: 0 0 calc(var(--line-height) * 2);
 }
@@ -342,7 +337,7 @@ button:focus, input:focus {
 }
 
 input {
-  width: calc(100% - 1ch);
+  width: calc(round(down, 100%, 1ch));
 }
 ::placeholder {
   color: var(--text-color-alt);
@@ -371,7 +366,7 @@ button:active {
 
 label {
   display: block;
-  width: calc(100% - 1ch);
+  width: calc(round(down, 100%, 1ch));
   height: auto;
   line-height: var(--line-height);
   font-weight: var(--font-weight-medium);
@@ -423,13 +418,13 @@ label input {
   --grid-cells: 0;
   display: flex;
   gap: 1ch;
-  width: calc(var(--grid-cells) * 1ch);
+  width: calc(round(down, 100%, (1ch * var(--grid-cells)) - (1ch * var(--grid-cells) - 1)));
   margin-bottom: var(--line-height);
 }
 
 .grid > *,
 .grid > input {
-  flex: 0 0 calc((100% / var(--grid-cells)) - 1ch);
+  flex: 0 0 calc(round(down, (100% - (1ch * (var(--grid-cells) - 1))) / var(--grid-cells), 1ch));
 }
 .grid:has(> :last-child:nth-child(1)) { --grid-cells: 1; }
 .grid:has(> :last-child:nth-child(2)) { --grid-cells: 2; }
@@ -464,4 +459,17 @@ label input {
 
 .debug-toggle-label {
   text-align: right;
+}
+
+
+/* custom */
+
+img {
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+}
+
+img:hover {
+  filter: none;
+  -webkit-filter: grayscale(0);
 }
