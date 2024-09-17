@@ -473,3 +473,17 @@ img:hover {
   filter: none;
   -webkit-filter: grayscale(0);
 }
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
